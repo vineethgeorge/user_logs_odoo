@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record id="res_users_inherit" model="ir.ui.view">
+	        <field name="name">res.users.form.inherit</field>
+	        <field name="model">res.users</field>
+	        <field name='inherit_id' ref='base.view_users_form'/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//notebook/page[@name='access_rights']" position="after">
+	        		<page string='Login Analysis'>
+	        			<field name='user_log_ids' nolabel='1'>
+	        				<tree>
+	        					<field name='user_id'/>
+	        					<field name='sign_in'/>
+	        					<field name='sign_out'/>
+	        					<field name='ip_address'/>
+	        					<field name='status'/>
+	        					<field name='session_id' invisible='1'/>
+	        				</tree>
+	        			</field>
+	        		</page>
+	        	</xpath>      
+	        </field>
+        </record>
+
+    <data>
+	<!-- Adds all assets in Odoo -->
+        <template id="assets_backend" name="static_resources_demo assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+		<!--These links will be called when loading your Odoo -->
+                <script type="text/javascript" src="/user_logs/static/src/js/browser.js"></script>
+            </xpath>
+        </template>
+    </data>
+    </data>
+</openerp>
